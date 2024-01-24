@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        form, section {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3498db;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #3498db;  /* Adjust the color if needed */
+    color: white;
+    padding: 10px 20px;  /* Adjust the padding for medium size */
+    font-size: large;   /* Set the font size to medium */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .file-input {
+            display: none;
+        }
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            display: none;
+        }
+        .button-label {
+    color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> Muhura Project Management Report</h1>
+
+    <form>
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" name="projectName" placeholder="Your Project Name" required>
+
+        <label for="projectManager">Project Manager:</label>
+        <input type="text" id="projectManager" name="projectManager" placeholder="John Doe" required>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+
+        
+    </form>
+
+    <section>
+        <h2>Significant Accomplishments/Activities/Items Completed - Form</h2>
+        <form>
+            <label for="projectPurpose">Purpose of Project:</label>
+            <textarea id="projectPurpose" name="projectPurpose" rows="3" placeholder=" purpose of the project"></textarea>
+
+            <label for="projectPurpose">Brief description of Project:</label>
+            <textarea id="projectPurpose" name="projectPurpose" rows="3" placeholder="Briefly description of Project"></textarea>
+
+
+
+            <label for="accomplishment1">Accomplishment 1:</label>
+            <textarea id="accomplishment1" name="accomplishment1" rows="3" placeholder="Description of the significant accomplishment or activity"></textarea>
+
+            <label for="accomplishment2">Accomplishment 2:</label>
+            <textarea id="accomplishment2" name="accomplishment2" rows="3" placeholder="Description of another significant accomplishment or activity"></textarea>
+        </form>
+
+        <div>
+            <h3>Before Section</h3>
+            <img src="b5.jpeg" alt="">
+            <img src="b4.jpeg" alt="">
+            <img src="b2.jpeg" alt="">
+            <img src="b1.jpeg" alt="">
+           
+
+           
+        
+
+            <h3>After Section</h3>
+            <img src="a3.jpeg" alt="">
+            <img src="a2.jpeg" alt="">
+            <img src="a1.jpeg" alt="">
+           
+
+            <!-- Repeat similar blocks for other "After" buttons -->
+        </div>
+    </section>
+
+    <button id="printBtn">Print Document</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.min.js"></script>
+    <script>
+        document.getElementById('printBtn').addEventListener('click', function () {
+            // Trigger the print functionality
+            window.print();
+        });
+
+        // Handle file input changes and display the selected image
+        var fileInputs = document.querySelectorAll('.file-input');
+        fileInputs.forEach(function (input) {
+            input.addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                var imgId = input.id.replace('Btn', 'Img');
+                var imgElement = document.getElementById(imgId);
+
+                // Display the selected image
+                if (file && imgElement) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        imgElement.src = e.target.result;
+                        imgElement.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
